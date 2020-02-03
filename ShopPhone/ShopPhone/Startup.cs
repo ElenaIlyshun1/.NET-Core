@@ -19,7 +19,23 @@ namespace ShopPhone
         {
             services.AddTransient<IAllPhones, MockPhones>();
             services.AddTransient<IPhoneCategory, MockCategory>();
+            services.AddTransient<IAllMotherboards, MockMotherboards>();
+            //services.AddTransient<IMotherboardsCategory, MotherboardCategory>();
             services.AddMvc();
+
+            //services.AddTransient<IAllPhones, MockPhones>();
+            //services.AddTransient<IPhoneCategory, MockCategory>();
+            //services.AddTransient<IAllRam, MockRam>();
+            //services.AddTransient<IRamCategory, MockRamCategory>();
+            //services.AddTransient<IAllSsd, MockSsd>();
+            //services.AddTransient<ISsdCategory, MockSsdCategory>();
+            //services.AddTransient<IAllSsd, MockSsd>();
+            //services.AddTransient<IProcesorCategory, MockProcesorCategory>();
+            //services.AddTransient<IAllProcesors, MockProcesor>();
+            //services.AddTransient<IMotherboardsCategory, MockMotherboardCategory>();
+            //services.AddTransient<IAllVideoCards, MockVideoCard>();
+            //services.AddTransient<IVideoCardCategory, MockVideoCardCategory>();
+            //services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

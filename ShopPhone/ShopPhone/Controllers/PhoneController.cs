@@ -1,10 +1,11 @@
-﻿using ShopPhone.Main.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using ShopPhone.Main.Interfaces;
 using ShopPhone.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
+
 
 namespace ShopPhone.Controllers
 {
@@ -17,15 +18,14 @@ namespace ShopPhone.Controllers
         {
             _allPhones = iAllPhones;
             _allCategories = iPhoneCategory;
-
         }
+
         public ViewResult List()
         {
             ViewBag.Title = "Phones";
             PhoneListViewModel obj = new PhoneListViewModel();
             obj.allPhones = _allPhones.phones;
             obj.carrentCategory = "Best category";
-
 
             return View(obj);
         }

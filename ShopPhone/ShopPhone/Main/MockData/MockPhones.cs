@@ -11,7 +11,10 @@ namespace ShopPhone.Main.MockData
     public class MockPhones : IAllPhones
     {
 
-        private readonly IPhoneCategory _phoneCategory = new MockCategory();
+        private readonly IPhoneCategory _categoryPhone = new MockCategory();
+       // public IEnumerable<Phone> Phones
+       
+
         public IEnumerable<Phone> phones
         {
             get
@@ -21,19 +24,19 @@ namespace ShopPhone.Main.MockData
                     new Phone
                     {
                         name = "Samsung S10",
-                        description = "Best phone by sumsung",
-                        img = "https://www.google.com/url?q=https://i1.rozetka.ua/goods/11052575/samsung_galaxy_s10_6_128_gb_white_sm_g973fzwdsek_images_11052575871.jpg&sa=D&source=hangouts&ust=1580285652161000&usg=AFQjCNG_tIxwMxCRioUH5piiSHz7bp8Rhw",
+                        description = "Best phone by Samsung",
+                        img = "/img/samsung_galaxy_s10_6_128_gb.jpg",
                         price = 23000,
-                        Category = _phoneCategory.AllCategories.First()
+                        Category = _categoryPhone.AllCategories.First()
                     },
                     new Phone
                     {
                         name = "Nokia 3310",
-                        description = "Old phone",
-                        img = "https://static.turbosquid.com/Preview/001329/666/6L/_DHQ.jpg",
+                        description = "Old phone.",
+                        img = "/img/nokia_3310.jpg",
                         price = 700,
-                        Category = _phoneCategory.AllCategories.Last()
-                    },
+                        Category = _categoryPhone.AllCategories.Last()
+                    }
                 };
             }
         }
