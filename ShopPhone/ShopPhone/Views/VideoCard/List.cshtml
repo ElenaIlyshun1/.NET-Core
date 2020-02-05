@@ -1,0 +1,18 @@
+﻿@model VideoCardListViewModel
+<h1>Відеокарти</h1>
+
+<div class="row mt-5 mb-2">
+    @{
+        foreach (var item in Model.allVideoCards)
+        {
+            <div class="col-lg-6" style="text-align: center;">
+                <h3>@item.name</h3>
+                <div>Продавець : @item.name</div>
+                <div>Опис : @item.description</div>
+                <img class="imgPhone" style="width: 500px;" src="@item.img" alt="@item.name" />
+                <div>Ціна : @item.price.ToString() грн</div>
+                <p><a class="btn btn-warning" href="#">Детально</a></p>
+            </div>
+        }
+    }
+</div>

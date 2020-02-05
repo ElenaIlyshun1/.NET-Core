@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ShopPhone.Main.Interfaces;
+
 
 namespace ShopPhone.Main.MockData
 {
-    public class MotherboardCategory : IMotherboardsCategory
+    public class MockMotherboardCategory : IMotherboardsCategory
     {
         public IEnumerable<MotherboardCategory> AllMotherboardsCategories
         {
@@ -16,8 +16,8 @@ namespace ShopPhone.Main.MockData
             {
                 return new List<MotherboardCategory>
                 {
-                    //new MotherboardCategory {categoryName = "Flagman", categoryDescription = "Motherboard with low path"},
-                    //new MotherboardCategory {categoryName = "Budget", categoryDescription = "Motherboard with hight path"}
+                    new MotherboardCategory {categoryName = "Flagman", categoryDescription = "Motherboard with low path"},
+                    new MotherboardCategory {categoryName = "Budget", categoryDescription = "Motherboard with hight path"}
                 };
             }
         }

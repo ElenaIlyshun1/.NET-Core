@@ -1,0 +1,18 @@
+﻿@model SsdListViewModel
+<h1>SSD</h1>
+
+<div class="row mt-5 mb-2">
+    @{
+        foreach (var item in Model.allSsds)
+        {
+            <div class="col-lg-6" style="text-align: center;">
+                <h3>@item.name</h3>
+                <div>Продавець : @item.name</div>
+                <div>Опис : @item.description</div>
+                <img class="imgPhone" src="@item.img" alt="@item.name" />
+                <div>Ціна : @item.price.ToString() грн</div>
+                <p><a class="btn btn-warning" href="#">Детально</a></p>
+            </div>
+        }
+    }
+</div>

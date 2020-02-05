@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShopPhone.ViewModel
 {
-    public class MotherboardListViewModel
+    public class ProcesorListViewModel
     {
-        public IEnumerable<Motherboard> allMotherboards { set; get; }
+        public IEnumerable<Procesor> allProcesors { set; get; }
         public string currentCategory { set; get; }
     }
 }
