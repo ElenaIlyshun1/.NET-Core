@@ -14,7 +14,7 @@ namespace ShopPhone.Main
 
         }
         public DbSet<Phone> Phone { get; set; }
-        public DbSet<Category> PhoneCategories { get; set; }
+        public DbSet<Category> Category { get; set; }
         public DbSet<Motherboard> Motherboards { get; set; }
         public DbSet<MotherboardCategory> MotherboardCategories { get; set; }
         public DbSet<Procesor> Procesors { get; set; }

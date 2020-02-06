@@ -11,9 +11,10 @@ namespace ShopPhone.Main
         public static void Initial(DBContent content)
         {
 
-            if (!content.PhoneCategories.Any())
+            if (!content.Category.Any())
             {
-                content.PhoneCategories.AddRange(Categories.Select(c => c.Value));
+
+                content.Category.AddRange(Categories.Select(c => c.Value));
             }
             if (!content.Phone.Any())
             {
@@ -51,6 +52,7 @@ namespace ShopPhone.Main
                         Category = Categories["Flagman"]
                     }
                 );
+                content.SaveChanges();
             }
 
             if (!content.MotherboardCategories.Any())
@@ -93,6 +95,7 @@ namespace ShopPhone.Main
                         MotherboardCategory = MotherboardCategories["Flagman"]
                     }
                 );
+                content.SaveChanges();
             }
 
             if (!content.ProcesorCategories.Any())
@@ -135,6 +138,7 @@ namespace ShopPhone.Main
                         ProcesorCategory = ProcesorCategories["Flagman"]
                     }
                 );
+                content.SaveChanges();
             }
 
             if (!content.RamCategories.Any())
@@ -177,6 +181,7 @@ namespace ShopPhone.Main
                         RamCategory = RamCategories["Flagman"]
                     }
                 );
+                content.SaveChanges();
             }
 
             if (!content.SsdCategories.Any())
@@ -219,6 +224,7 @@ namespace ShopPhone.Main
                         SsdCategory = SsdCategories["Budget"]
                     }
                 );
+                content.SaveChanges();
             }
 
             if (!content.VideoCardCategories.Any())

@@ -15,6 +15,6 @@ namespace ShopPhone.Main.Repository
             this.dbContent = dbContent;
         }
 
-        public IEnumerable<Category> AllCategories => dbContent.PhoneCategories;
+        public IEnumerable<Category> AllCategories => dbContent.Category;
     }
 }
