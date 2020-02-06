@@ -1,0 +1,22 @@
+﻿@model List<BlogModel>
+    @{
+    ViewData["Title"] = "Blog";
+    }
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Posts</h2>
+            @foreach (var item in Model)
+            {
+            <div class="fancy-border">
+                <h3>@item.title</h3>
+                <img src=@item.img alt="@item.title" class="imgBlog" />
+                <p>@item.preview</p>
+                <a class="btn btn-success" asp-controller="Blog" asp-action="Post" asp-route-id="@item.id">Read more</a>
+            </div>
+              
+            }
+        </div>
+    </div>
+</div>
