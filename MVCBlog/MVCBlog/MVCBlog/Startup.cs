@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MVCBlog.Data.Interfaces;
 using MVCBlog.Entityes;
+using MVCBlog.Entityes.Implements;
 
 namespace MVCBlog
 {
@@ -25,6 +27,18 @@ namespace MVCBlog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
+
+            //var connections = Configuration.GetConnectionString("DefaultConnection");
+            //services.AddDbContext<DBContext>(options => options.UseSqlServer(connections));
+
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -34,6 +48,8 @@ namespace MVCBlog
 
             var connections = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DBContext>(options => options.UseSqlServer(connections));
+
+            services.AddTransient<IPostRepository, PostRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

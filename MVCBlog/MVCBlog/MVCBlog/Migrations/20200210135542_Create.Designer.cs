@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCBlog.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20200206093257_Init")]
-    partial class Init
+    [Migration("20200210135542_Create")]
+    partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,15 +26,21 @@ namespace MVCBlog.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("author");
+                    b.Property<string>("author")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("fullPost");
+                    b.Property<string>("fullPost")
+                        .IsRequired();
 
                     b.Property<string>("img");
 
-                    b.Property<string>("preview");
+                    b.Property<string>("preview")
+                        .IsRequired();
 
-                    b.Property<string>("title");
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("id");
 
