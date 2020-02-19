@@ -18,6 +18,7 @@ html {
     }
 }
 
+
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
@@ -75,9 +76,13 @@ body {
 */
 
 body {
-
-   
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+}
+
+.background-photo {
+    /*background: url(../img/7.jfif) no-repeat;*/
+    /*background-size: cover;*/
+  background-color:bisque;
 }

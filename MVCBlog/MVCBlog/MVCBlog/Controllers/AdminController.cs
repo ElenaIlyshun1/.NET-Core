@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MVCBlog.Data.Interfaces;
 using MVCBlog.Models;
 using MVCBlog.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,45 +44,57 @@ namespace MVCBlog.Controllers
         //    return View();
         //}
         //}
-        public class AccountController : Controller
+        private IPostRepository _postRep;
+        private IHostingEnvironment hostingEnvironment;
+
+        public AdminController(IPostRepository postRep, IHostingEnvironment hostingEnvironment)
         {
-            private readonly UserManager<IdentityUser> userManager;
-            private readonly SignInManager<IdentityUser> signInManager;
+            _postRep = postRep;
+            this.hostingEnvironment = hostingEnvironment;
+        }
+        public IActionResult Admin()
+        {
+            return View();
+        }
+        public IActionResult PostEditor(int postID)
+        {
+            return View();
+        }
 
-            public AccountController(UserManager<IdentityUser> userManager,
-                SignInManager<IdentityUser> signInManager)
+        [HttpGet]
+        public ViewResult CreatePost()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreatePost(PostCreateViewModel model)
+        {
+            if (ModelState.IsValid)
             {
-                this.userManager = userManager;
-                this.signInManager = signInManager;
-
-            }
-
-            [HttpGet]
-            public IActionResult Register()
-            {
-                return View();
-            }
-
-            [HttpPost]
-            public async Task<IActionResult> Register(RegisterViewModel model)
-            {
-                if (ModelState.IsValid)
+                string uniqFileName = null;
+                if (model.img != null)
                 {
-                    var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-                    var result = await userManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
+                    uniqFileName = Guid.NewGuid().ToString() + "_" + model.img.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                        await signInManager.SignInAsync(user, isPersistent: false);
-                        return RedirectToAction("Blog", "Blog");
+                        model.img.CopyTo(fileStream);
                     }
 
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
                 }
-                return View(model);
+                BlogModel newPost = new BlogModel
+                {
+                    author = model.author,
+                    title = model.title,
+                    preview = model.preview,
+                    fullPost = model.fullPost,
+                    img = uniqFileName
+                };
+                _postRep.CreatePost(newPost);
+                return RedirectToRoute("default", new { controller = "Blog", action = "Post", id = newPost.id });
             }
+            return View();
         }
     }
 }
