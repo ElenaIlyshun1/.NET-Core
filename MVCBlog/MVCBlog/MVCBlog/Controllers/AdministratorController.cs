@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MVCBlog.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class AdministratorController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;

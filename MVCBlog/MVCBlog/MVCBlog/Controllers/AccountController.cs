@@ -40,7 +40,10 @@ namespace MVCBlog.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    City = model.City
+                    City = model.City,
+                    Street = model.Street,
+                    Position = model.Position
+                   
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
