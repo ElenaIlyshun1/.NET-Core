@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MVCBlog.Models;
 using MVCBlog.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace MVCBlog.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -35,7 +36,12 @@ namespace MVCBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var user = new AppUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    City = model.City
+                };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -77,7 +83,7 @@ namespace MVCBlog.Controllers
                 {
                     if (!string.IsNullOrEmpty(returnUrl))
                     {
-                        return Redirect(returnUrl);
+                        return LocalRedirect(returnUrl);
                     }
                     else
                     {
@@ -90,6 +96,12 @@ namespace MVCBlog.Controllers
             }
 
             return View(model);
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

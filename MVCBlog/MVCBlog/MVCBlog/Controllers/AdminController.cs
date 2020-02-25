@@ -15,35 +15,6 @@ namespace MVCBlog.Controllers
     public class AdminController : Controller
     {
 
-        //private IPostRepository _postRep;
-        //public AdminController(IPostRepository postRep)
-        //{
-        //    _postRep = postRep;
-        //}
-        //public IActionResult Admin()
-        //{
-        //    return View();
-        //}
-        //public IActionResult PostEditor(int postID)
-        //{
-        //    return View();
-        //}
-
-        //[HttpGet]
-        //public ViewResult CreatePost()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public IActionResult CreatePost(BlogModel post)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        return View();
-        //    }
-        //    return View();
-        //}
-        //}
         private IPostRepository _postRep;
         private IHostingEnvironment hostingEnvironment;
 

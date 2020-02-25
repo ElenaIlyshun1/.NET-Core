@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MVCBlog.Data.Interfaces;
 using MVCBlog.Entityes;
 using MVCBlog.Entityes.Implements;
+using MVCBlog.Models;
 
 namespace MVCBlog
 {
@@ -43,12 +44,12 @@ namespace MVCBlog
             services.AddDbContext<DBContext>(options => options.UseSqlServer(connections));
 
             services.AddTransient<IPostRepository, PostRepository>();
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 5;
                 options.Password.RequiredUniqueChars = 2;
             })
-                 .AddEntityFrameworkStores<DBContext>();
+                .AddEntityFrameworkStores<DBContext>();
 
 
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
